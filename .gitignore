@@ -11,3 +11,4 @@ doc/node.1
 tmp/
 node
 node_g
+.*.swp

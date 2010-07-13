@@ -1,0 +1,6 @@
+To build node on Windows:
+
+* Install python 2.7.
+* Fix symlinks.
+  # git ls-tree -r HEAD | grep ^12 | while read mode type sha symlink ; do orig_file=`dirname $symlink`/`git cat-file -p $sha` ; echo "$symlink ---> $orig_file" ; cp $orig_file $symlink ; done
+# python tools\waf-light --jobs=1 configure
