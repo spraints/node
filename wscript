@@ -127,10 +127,16 @@ def set_options(opt):
 
 
 def configure(conf):
+  # Use x86 only because the included pthread library is x86 only.
+  conf.env['MSVC_TARGETS'] = ['x86']
   conf.check_tool('compiler_cxx')
   if not conf.env.CXX: conf.fatal('c++ compiler not found')
   conf.check_tool('compiler_cc')
   if not conf.env.CC: conf.fatal('c compiler not found')
+
+  if conf.env.CXX_NAME == 'msvc':
+    conf.env.LIBPATH = conf.env.LIBPATH + [os.path.abspath('win32\\msvc\\lib')]
+    conf.env.CPPPATH = conf.env.CPPPATH + [os.path.abspath('win32\\msvc\\include')]
 
   o = Options.options
 

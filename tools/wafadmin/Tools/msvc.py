@@ -509,6 +509,12 @@ def find_msvc(conf):
 	# no more possibility of failure means the data state will be consistent
 	# we may store the data safely now
 
+        v.DEST_OS = 'win32'
+        if cxx[0].lower().endswith('amd64\\cl.exe'):
+                v.DEST_CPU = 'x86_64'
+        else:
+                v.DEST_CPU = 'x86'
+
 	v.MSVC_MANIFEST = has_msvc_manifest
 	v.PATH = path
 	v.CPPPATH = includes
